@@ -1,0 +1,104 @@
+#
+# Multipath configuration modified by puppet, do not touch
+#
+defaults {
+<% if @failback -%>
+	failback <%= @failback %>
+<% end -%>
+<% if @getuid_callout -%>
+	getuid_callout <%= @getuid_callout %>
+<% end -%>
+<% if @max_fds -%>
+	max_fds <%= @max_fds %>
+<% end -%>
+<% if @no_path_retry -%>
+	no_path_retry <%= @no_path_retry %>
+<% end -%>
+<% if @path_checker -%>
+	path_checker <%= @path_checker %>
+<% end -%>
+<% if @path_grouping_policy -%>
+	path_grouping_policy <%= @path_grouping_policy %>
+<% end -%>
+<% if @polling_interval -%>
+	polling_interval <%= @polling_interval %>
+<% end -%>
+<% if @prio_callout -%>
+	prio_callout <%= @prio_callout %>
+<% end -%>
+<% if @rr_min_io -%>
+	rr_min_io <%= @rr_min_io %>
+<% end -%>
+<% if @rr_weight -%>
+	rr_weight <%= @rr_weight %>
+<% end -%>
+<% if @selector -%>
+	selector <%= @selector %>
+<% end -%>
+<% if @udev_dir -%>
+	udev_dir <%= @udev_dir %>
+<% end -%>
+<% if @user_friendly_names -%>
+	user_friendly_names yes
+<% end -%>
+}
+<% if @blacklist -%>
+
+blacklist {
+<% @blacklist.keys.sort.each do |blkey| -%>
+<% @blacklist[blkey].each do |bldata| -%>
+<% if bldata.is_a?(Hash) -%>
+	<%= blkey %> {
+<% bldata.keys.sort.each do |bldatakey| -%>
+		<%= bldatakey %> <%= bldata[bldatakey] %>
+<% end -%>
+	}
+<% else -%>
+	<%= blkey %> <%= bldata %>
+<% end -%>
+<% end -%>
+<% end -%>
+}
+<% end -%>
+<% if @blacklist_exceptions -%>
+
+blacklist_exceptions {
+<% @blacklist_exceptions.keys.sort.each do |blkey| -%>
+<% @blacklist_exceptions[blkey].each do |bldata| -%>
+<% if bldata.is_a?(Hash) -%>
+	<%= blkey %> {
+<% bldata.keys.sort.each do |bldatakey| -%>
+		<%= bldatakey %> <%= bldata[bldatakey] %>
+<% end -%>
+	}
+<% else -%>
+	<%= blkey %> <%= bldata %>
+<% end -%>
+<% end -%>
+<% end -%>
+}
+<% end -%>
+<% if @multipaths -%>
+
+multipaths {
+<% @multipaths.each do |multipath| -%>
+	multipath {
+<% multipath.keys.sort.each do |mpkey| -%>
+		<%= mpkey %> <%= multipath[mpkey] %>
+<% end -%>
+	}
+<% end -%>
+}
+<% end -%>
+<% if @devices -%>
+
+devices {
+<% @devices.each do |device| -%>
+	device {
+<% device.keys.sort.each do |devkey| -%>
+		<%= devkey %> <%= device[devkey] %>
+<% end -%>
+	}
+<% end -%>
+}
+<% end -%>
