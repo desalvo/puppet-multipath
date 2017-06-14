@@ -1,6 +1,6 @@
 {
   "name": "desalvo-multipath",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "desalvo",
   "summary": "Puppet module to install multipath",
   "license": "Apache 2.0",

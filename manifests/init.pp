@@ -80,9 +80,9 @@ class multipath (
 
   file {$multipath::params::conf:
     ensure => present,
-    owner  => root,
-    group  => root,
-    mode   => 0644,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
     content => template("multipath/multipath.conf.erb"),
   }
 
